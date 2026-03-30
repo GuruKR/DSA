@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Solution {
+    public List<Integer> unionArray(int[] nums1, int[] nums2) {
+        int i = 0, j = 0;
+        int n1 = nums1.length, n2 = nums2.length;
+
+        List<Integer> result = new ArrayList<>();
+
+        while (i < n1 && j < n2) {
+            if (nums1[i] <= nums2[j]) {
+                if (result.isEmpty() || result.get(result.size() - 1) != nums1[i]) {
+                    result.add(nums1[i]);
+                }
+                i++;
+            } else {
+                if (result.isEmpty() || result.get(result.size() - 1) != nums2[j]) {
+                    result.add(nums2[j]);
+                }
+                j++;
+            }
+        }
+
+        while (i < n1) {
+            if (result.isEmpty() || result.get(result.size() - 1) != nums1[i]) {
+                result.add(nums1[i]);
+            }
+            i++;
+        }
+
+        while (j < n2) {
+            if (result.isEmpty() || result.get(result.size() - 1) != nums2[j]) {
+                result.add(nums2[j]);
+            }
+            j++;
+        }
+
+        return result;
+    }
+}
