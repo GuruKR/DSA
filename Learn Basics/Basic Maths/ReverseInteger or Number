@@ -1,0 +1,26 @@
+class Solution {
+    public int reverse(int x) {
+
+        //Reversing the number
+
+        int rev=0;
+
+        while(x!=0){
+            //getting the last  number
+            int lastdigit=x%10;
+
+            //I am checking the stack overflow condition
+
+            if(rev>Integer.MAX_VALUE/10||rev<Integer.MIN_VALUE/10){
+                return 0;
+            }
+
+            rev=(rev*10)+lastdigit;
+
+            //removes the last digit for next iteration of the loop
+            x=x/10;
+        }
+        return rev;
+        
+    }
+}
