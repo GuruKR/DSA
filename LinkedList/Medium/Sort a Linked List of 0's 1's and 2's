@@ -1,0 +1,45 @@
+class Solution {
+    public ListNode sortList(ListNode head) {
+        
+        if (head == null || head.next == null) return head;
+
+        // Dummy heads
+        ListNode zeroHead = new ListNode(-1), zeroTail = zeroHead;
+        ListNode oneHead = new ListNode(-1), oneTail = oneHead;
+        ListNode twoHead = new ListNode(-1), twoTail = twoHead;
+
+        ListNode curr = head;
+
+        // Step 1: Split into 3 lists
+        while (curr != null) {
+            if (curr.val == 0) {
+                zeroTail.next = curr;
+                zeroTail = curr;
+            } else if (curr.val == 1) {
+                oneTail.next = curr;
+                oneTail = curr;
+            } else {
+                twoTail.next = curr;
+                twoTail = curr;
+            }
+            curr = curr.next;
+        }
+
+        // Step 2: Merge lists
+
+        // Connect 0s -> 1s or 2s
+        if (oneHead.next != null) {
+            zeroTail.next = oneHead.next;
+        } else {
+            zeroTail.next = twoHead.next;
+        }
+
+        // Connect 1s -> 2s
+        oneTail.next = twoHead.next;
+
+        // End list
+        twoTail.next = null;
+
+        return zeroHead.next;
+    }
+}
