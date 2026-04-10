@@ -1,0 +1,18 @@
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // Edge case
+        if (headA == null || headB == null) return null;
+
+        ListNode pA = headA;
+        ListNode pB = headB;
+
+        // Traverse both lists
+        while (pA != pB) {
+            // Move to next or switch list
+            pA = (pA == null) ? headB : pA.next;
+            pB = (pB == null) ? headA : pB.next;
+        }
+
+        return pA; // either intersection node or null
+    }
+}
