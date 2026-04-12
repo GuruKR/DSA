@@ -1,0 +1,31 @@
+class Solution {
+    public Node deleteAllOccurrences(Node head, int key) {
+        Node curr = head;
+
+        while (curr != null) {
+            Node nextNode = curr.next;
+
+            if (curr.val == key) {
+
+                // Case 1: Deleting head
+                if (curr == head) {
+                    head = curr.next;
+                }
+
+                // Case 2: Fix next node
+                if (curr.next != null) {
+                    curr.next.prev = curr.prev;
+                }
+
+                // Case 3: Fix previous node
+                if (curr.prev != null) {
+                    curr.prev.next = curr.next;
+                }
+            }
+
+            curr = nextNode;
+        }
+
+        return head;
+    }
+}
